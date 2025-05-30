@@ -5,4 +5,3 @@ graph TD
   C --> D[EC Private Key Decryption]
   D --> E[Original Message]
 ```
-
