@@ -62,7 +62,8 @@ sequenceDiagram
 | **CertificateRequest** | Optional. Sent if the server requires client authentication (used in **mutual TLS / mTLS**).               |
 | **ServerHelloDone**    | Indicates the server has completed its initial handshake messages.                                         |
 | **ClientKeyExchange**  | Contains pre-master secret or public key, depending on the key exchange algorithm.                         |
-| **Client Certificate** | Optional. Sent in response to `CertificateRequest` for mTLS.                                               |
+| **Client Certificate** | Optional. Sent in response to `CertificateRequest` for mTLS.   
+| **Certificate Verify** | Optional.  Sent by the client (only if the server sends a CertificateRequest) to prove possession of the private key associated with its certificate by signing the previous handshake messages.                                               |
 | **ChangeCipherSpec**   | Indicates that subsequent messages will be encrypted using the negotiated keys and algorithms.             |
 | **Finished**           | First encrypted message confirming the handshake integrity.                                                |
 ---
@@ -111,5 +112,6 @@ mTLS can be configured as **optional**, meaning the server requests a client cer
 - However, if client authentication is required for application access, the server can **reject the request at the application layer**, for example by returning an HTTP 400 or 403 error.
 - This approach allows flexible handling of clients with and without certificates without dropping the TCP connection outright.
 
+The older TLS are deprecated as they support weak ciphers(1.1) or they have a vulnerability(BEAST in 1.0).
 
 
