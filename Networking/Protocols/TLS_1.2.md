@@ -2,7 +2,7 @@
 
 **TLS (Transport Layer Security)** is a cryptographic protocol that provides secure communication over a computer network. It ensures **confidentiality**, **integrity**, and **authentication** between communicating applications.
 
-- **Layer:** Transport Layer (Layer 4)
+- **Layer:** Transport Layer (Layer 5 or 6)
 - **Underlying Protocol:** Built on top of **TCP (Transmission Control Protocol)**
 - **Primary Use:** Encrypts data transmitted over the network to prevent eavesdropping or tampering.
 
