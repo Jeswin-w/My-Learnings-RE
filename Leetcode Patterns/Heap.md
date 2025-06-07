@@ -8,3 +8,7 @@ top n frequest words
 2. Create heap of size n
 
 in Java we use priority queue to create a heap
+
+The advantage of this over sorting a hashmap is we need to sort only small data is size is huge this is efficient 
+
+this can be better done my bucket sort.
