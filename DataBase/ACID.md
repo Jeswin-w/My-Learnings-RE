@@ -101,24 +101,52 @@ Each level offers a different balance of performance vs. accuracy:
 
 ## 📏 Consistency
 
-Consistency ensures that a transaction brings the database from one valid state to another, maintaining all database rules and constraints.
+**Consistency** ensures that a transaction moves the database from one valid state to another, adhering to all defined rules.
 
-### Example:
+### Ensured By
 
-- If a table enforces `balance >= 0`, a transaction that tries to set `balance = -100` will fail and rollback.
+- Constraints (e.g., foreign keys, uniqueness)
+- Data types and triggers
+- Application logic
+- Atomicity & Isolation (indirect contributors)
 
-> Constraints, triggers, foreign keys, and data types all contribute to consistency.
+### Types of Consistency
+
+1. **Data Integrity Consistency**  
+   - Defined by schema & rules
+   - Enforced through ACID properties
+
+2. **Read Consistency**  
+   - Whether a committed change is visible to other transactions
+   - Affected by replication, isolation level, and caching
+   - **Eventual consistency** is common in distributed systems
 
 ---
+
 
 ## 💾 Durability
 
-Durability ensures that once a transaction is committed, its changes are **permanently recorded**, even in the case of a system crash.
+**Durability** guarantees that once a transaction is committed, its changes are permanent—even in case of a crash.
 
-- Data is written to disk or a write-ahead log (WAL).
-- After commit, the system guarantees the changes are safe and recoverable.
+### Durability Mechanisms
+
+- **WAL (Write-Ahead Log)**  
+  - Logs changes before applying them  
+  - Enables recovery after crashes  
+- **Append-Only Files (AOF)**  
+  - Common in NoSQL (e.g., Redis)  
+- **Snapshots**  
+  - In-memory writes followed by batch disk writes  
+
+### OS-Level Caching
+
+- Disk writes may first go to **OS cache**, not immediately to disk.
+- **fsync** forces flush to disk, ensuring durability.
+
+> WAL avoids expensive full data writes by logging compressed, sequential changes.
 
 ---
+
 
 ## Summary Table
 
