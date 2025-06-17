@@ -23,6 +23,32 @@ will prevent this
 
 but in other DBs usually we need to use serializable.
 
+eg)
+```
+create table test (id integer)
+insert into test (2);
+ 
+begin transaction 1
+t1 - set isolation level read committed
+begin transaction 2
+t2 - set isolation level repeatable read
+ 
+t1 - select * from test;
+t2 - insert into test (4);
+t1 - select * from test;
+t1 - insert into test (5);
+t2 - select * from test;
+t1 - commit;
+t2 - select * from test;
+t2 - commit;
+```
+
+
+
+in postgres and mysql it is 2 | 2 | 2-4 | 2-4
+
+in other dbs 2 | 2 | 2-4 | 2-4-5
+
 ## Serializable vs non repeatable isolations
 
 Imagine a scenario
