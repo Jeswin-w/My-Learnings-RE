@@ -1,0 +1,77 @@
+# 🔄 Why PostgreSQL Creates a New Row on UPDATE
+
+PostgreSQL creates a **new row on UPDATE** due to its use of **MVCC (Multi-Version Concurrency Control)** — a concurrency model that ensures **readers don’t block writers and writers don’t block readers**.
+
+---
+
+## 📌 How It Works
+
+When you run an `UPDATE`, PostgreSQL:
+
+1. Marks the old row as dead (not immediately deleted).  
+2. Inserts a new version of the row with updated values.  
+3. Updates indexes to point to the new row (which has a new `ctid`).  
+
+---
+
+## 🧠 The Purpose: MVCC (Multi-Version Concurrency Control)
+
+MVCC enables:
+
+- Readers to see a **consistent snapshot** of data (without locking).  
+- Writers to update data **without blocking readers**.
+
+Instead of modifying a row in-place (which might block or confuse concurrent transactions):
+
+- PostgreSQL creates a **new row version**.  
+- The old version is still visible to transactions that started before the update.
+
+---
+
+## 🧪 Example
+
+Suppose you run:
+
+UPDATE users SET name = 'Alice' WHERE id = 1;
+
+PostgreSQL will:
+
+- Insert a new row with `name = 'Alice'`.  
+- Mark the old row as dead.  
+- Update all indexes to point to the new row’s `ctid`.
+
+---
+
+## 🧹 What Removes the Old Row?
+
+- Autovacuum or manual `VACUUM` reclaims space used by dead rows.  
+- This is essential to:  
+  - Prevent **table and index bloat**.  
+  - Keep **query performance** high.
+
+---
+
+## ⚠️ Side Effects
+
+- All indexes must be updated since the `ctid` changes.  
+- Frequent updates on large tables can lead to:  
+  - Table bloat (many dead tuples).  
+  - Increased I/O if autovacuum can't keep up.
+
+---
+
+## 🆚 Comparison with Other Databases
+
+| Database       | UPDATE Behavior                  | Index Target      |
+|----------------|-----------------------------------|-------------------|
+| PostgreSQL     | Inserts a new version (MVCC)      | `ctid`            |
+| MySQL (InnoDB) | Updates in-place (undo logs used) | Primary Key       |
+| SQL Server     | Updates in-place or moves rows    | Row ID / Slot     |
+
+---
+
+## ✅ Summary
+
+- PostgreSQL creates a new row on update to maintain **non-blocking concurrency** using MVCC.  
+- It ensures **transactional consistency** without needing locks.  
+- Index updates and vacuuming are essential to keeping performance optimal.
