@@ -1,0 +1,1 @@
+repeat(number) -> repeats string
