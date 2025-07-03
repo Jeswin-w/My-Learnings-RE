@@ -1,0 +1,1 @@
+In java treeMap.floorkey will get the value of the key or the next smallest key's value
