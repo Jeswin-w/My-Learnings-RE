@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520">
+  <defs>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #111827; }
+      .box { stroke-width: 2; rx: 10; }
+      .label { font: 600 16px Arial, sans-serif; fill: #111827; }
+      .small { font: 500 14px Arial, sans-serif; fill: #374151; }
+      .arrow { stroke: #374151; stroke-width: 2.5; marker-end: url(#m); }
+      .step { font: 700 14px Arial, sans-serif; fill: #0f172a; }
+    </style>
+    <marker id="m" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <rect width="1000" height="520" fill="#f8fafc"/>
+  <text x="30" y="42" class="title">DRAM Access and Row Buffer</text>
+
+  <rect x="60" y="100" width="260" height="130" class="box" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="120" y="140" class="label">Memory Controller</text>
+  <text x="85" y="170" class="small">Sends ACTIVATE / READ / WRITE / PRECHARGE</text>
+
+  <rect x="390" y="80" width="280" height="170" class="box" fill="#e0e7ff" stroke="#4f46e5"/>
+  <text x="505" y="115" class="label">DRAM Bank</text>
+  <rect x="430" y="135" width="200" height="85" class="box" fill="#fef3c7" stroke="#d97706"/>
+  <text x="465" y="180" class="label">Row Buffer</text>
+  <text x="448" y="202" class="small">Sense amplifiers hold active row</text>
+
+  <rect x="740" y="100" width="210" height="130" class="box" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="802" y="140" class="label">CPU Cache</text>
+  <text x="760" y="170" class="small">Data returned to CPU pipeline</text>
+
+  <line x1="320" y1="165" x2="390" y2="165" class="arrow"/>
+  <line x1="670" y1="165" x2="740" y2="165" class="arrow"/>
+
+  <rect x="90" y="300" width="820" height="165" class="box" fill="#ffffff" stroke="#94a3b8"/>
+
+  <circle cx="130" cy="340" r="15" fill="#f59e0b"/>
+  <text x="124" y="345" class="step">1</text>
+  <text x="160" y="345" class="label">ACTIVATE row R</text>
+  <text x="160" y="365" class="small">Entire row R is loaded into row buffer.</text>
+
+  <circle cx="130" cy="395" r="15" fill="#f59e0b"/>
+  <text x="124" y="400" class="step">2</text>
+  <text x="160" y="400" class="label">READ/WRITE column C</text>
+  <text x="160" y="420" class="small">Column access is served from active row buffer.</text>
+
+  <circle cx="130" cy="450" r="15" fill="#f59e0b"/>
+  <text x="124" y="455" class="step">3</text>
+  <text x="160" y="455" class="label">PRECHARGE</text>
+  <text x="160" y="475" class="small">Bank closes row; next access can activate another row.</text>
+
+  <text x="610" y="345" class="label">Row buffer hit:</text>
+  <text x="610" y="365" class="small">Next access to same open row -> faster</text>
+  <text x="610" y="400" class="label">Row buffer miss:</text>
+  <text x="610" y="420" class="small">Different row -> precharge + activate -> slower</text>
+</svg>

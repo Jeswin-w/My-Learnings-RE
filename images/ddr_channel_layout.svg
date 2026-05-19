@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420">
+  <defs>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #0f172a; }
+      .hdr { font: 700 20px Arial, sans-serif; fill: #111827; }
+      .txt { font: 500 15px Arial, sans-serif; fill: #1f2937; }
+      .box { stroke-width: 2; rx: 12; }
+      .ddr4 { fill: #dbeafe; stroke: #2563eb; }
+      .ddr5 { fill: #dcfce7; stroke: #16a34a; }
+      .chip { fill: #f8fafc; stroke: #64748b; stroke-width: 1.5; rx: 6; }
+      .line { stroke: #475569; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect width="980" height="420" fill="#f8fafc"/>
+  <text x="30" y="42" class="title">DIMM Data Channel Layout: DDR4 vs DDR5</text>
+
+  <rect x="40" y="90" width="420" height="280" class="box ddr4"/>
+  <text x="210" y="125" text-anchor="middle" class="hdr">DDR4 DIMM</text>
+  <text x="210" y="148" text-anchor="middle" class="txt">1 x 64-bit data channel</text>
+
+  <rect x="110" y="180" width="280" height="120" class="chip"/>
+  <text x="250" y="245" text-anchor="middle" class="hdr">64-bit Channel</text>
+
+  <line x1="250" y1="300" x2="250" y2="340" class="line"/>
+  <text x="250" y="360" text-anchor="middle" class="txt">Single wider channel</text>
+
+  <rect x="520" y="90" width="420" height="280" class="box ddr5"/>
+  <text x="730" y="125" text-anchor="middle" class="hdr">DDR5 DIMM</text>
+  <text x="730" y="148" text-anchor="middle" class="txt">2 x 32-bit independent subchannels</text>
+
+  <rect x="575" y="180" width="150" height="120" class="chip"/>
+  <rect x="735" y="180" width="150" height="120" class="chip"/>
+  <text x="650" y="245" text-anchor="middle" class="hdr">32-bit A</text>
+  <text x="810" y="245" text-anchor="middle" class="hdr">32-bit B</text>
+
+  <line x1="650" y1="300" x2="650" y2="340" class="line"/>
+  <line x1="810" y1="300" x2="810" y2="340" class="line"/>
+  <text x="730" y="360" text-anchor="middle" class="txt">Two narrower subchannels improve parallel efficiency</text>
+</svg>

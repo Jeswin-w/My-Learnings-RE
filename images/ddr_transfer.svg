@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420">
+  <defs>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #111827; }
+      .axis { stroke: #374151; stroke-width: 2; }
+      .tick { stroke: #6b7280; stroke-width: 1.5; }
+      .clock { fill: none; stroke: #2563eb; stroke-width: 4; }
+      .data { fill: none; stroke: #dc2626; stroke-width: 4; }
+      .label { font: 600 16px Arial, sans-serif; fill: #1f2937; }
+      .note { font: 500 14px Arial, sans-serif; fill: #374151; }
+      .pulse { fill: #16a34a; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="420" fill="#f8fafc"/>
+  <text x="30" y="40" class="title">DDR: Data on Both Clock Edges</text>
+
+  <line x1="80" y1="120" x2="940" y2="120" class="axis"/>
+  <line x1="80" y1="270" x2="940" y2="270" class="axis"/>
+
+  <text x="20" y="124" class="label">CLK</text>
+  <text x="20" y="274" class="label">DQ</text>
+
+  <path class="clock" d="M80 120 L140 80 L200 120 L260 80 L320 120 L380 80 L440 120 L500 80 L560 120 L620 80 L680 120 L740 80 L800 120 L860 80 L920 120"/>
+
+  <path class="data" d="M80 270 L120 270 L120 230 L180 230 L180 270 L240 270 L240 230 L300 230 L300 270 L360 270 L360 230 L420 230 L420 270 L480 270 L480 230 L540 230 L540 270 L600 270 L600 230 L660 230 L660 270 L720 270 L720 230 L780 230 L780 270 L840 270 L840 230 L900 230 L900 270"/>
+
+  <line x1="140" y1="65" x2="140" y2="300" class="tick"/>
+  <line x1="200" y1="65" x2="200" y2="300" class="tick"/>
+  <line x1="260" y1="65" x2="260" y2="300" class="tick"/>
+  <line x1="320" y1="65" x2="320" y2="300" class="tick"/>
+  <line x1="380" y1="65" x2="380" y2="300" class="tick"/>
+  <line x1="440" y1="65" x2="440" y2="300" class="tick"/>
+
+  <circle cx="140" cy="120" r="6" class="pulse"/>
+  <circle cx="200" cy="120" r="6" class="pulse"/>
+  <circle cx="260" cy="120" r="6" class="pulse"/>
+  <circle cx="320" cy="120" r="6" class="pulse"/>
+  <circle cx="380" cy="120" r="6" class="pulse"/>
+  <circle cx="440" cy="120" r="6" class="pulse"/>
+
+  <text x="80" y="335" class="note">Green points indicate transfer moments. DDR transfers once on rising edge and once on falling edge.</text>
+  <text x="80" y="358" class="note">Compared to SDR (one transfer per cycle), DDR doubles transfers per clock cycle.</text>
+</svg>
