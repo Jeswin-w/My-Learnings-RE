@@ -1,0 +1,15 @@
+DMA direct access memory
+
+Cpu acts as a bridge between network/keyboard and ram
+
+a key pressed in keyboard is added to cpu cache and the it is written to memory 
+
+this is called an interrupt
+
+interupt is costly
+
+DMA controller removes cpu and allows direct transfer 
+
+since cpu is not used cpu's mmu memory management unit there is no virtual memory 
+
+so it must be physical memory 
